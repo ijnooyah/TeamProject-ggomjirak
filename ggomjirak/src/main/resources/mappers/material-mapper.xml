@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+ <mapper namespace="com.dp.ggomjirak.material">
+ 
+ 	<!-- 준비물 삽입 -->
+	<insert id="insertMaterial2" parameterType="java.util.List">
+	    INSERT INTO tbl_material (MATERIAL_NO, MATERIAL_NAME)
+	    SELECT SEQ_MATERIAL_NO.NEXTVAL, A.* FROM (
+	    <foreach item="item" collection="list" separator="UNION ALL" >
+	        select #{item.material_name} MATERIAL_NO
+	        from dual
+	         WHERE NOT EXISTS
+			(
+			  SELECT
+			  MATERIAL_NAME
+			  FROM
+			  tbl_material
+			  WHERE
+			  MATERIAL_NAME = #{item.material_name}
+			)
+	    </foreach>) A
+	</insert>
+	
+	
+	<!-- 준비물 삽입 B타입 -->
+	<insert id="insertMaterial" parameterType="java.lang.String">
+		INSERT INTO tbl_material (MATERIAL_NO, MATERIAL_NAME)
+		SELECT seq_material_no.nextval, #{material_name}
+		FROM DUAL
+		WHERE NOT EXISTS
+		(
+		  SELECT
+		  material_name
+		  FROM
+		  tbl_material
+		  WHERE
+		  material_name = #{material_name}
+		)
+	</insert>
+	<!-- material테이블 pk값가지고 오기  -->
+	<select id="getMaterialNo" resultType="int">
+		SELECT MATERIAL_NO FROM tbl_material
+		WHERE MATERIAL_NAME = #{materialName}
+	</select>
+	
+		<!-- material테이블에서 materialVo가져오기-->
+	<select id="getMaterialVo" resultType="MaterialVo">
+		SELECT * FROM tbl_material
+		WHERE MATERIAL_NAME = #{materialName}
+	</select>
+		<!-- material테이블에서 materialVo가져오기-->
+	<select id="getMaterialVoByNo" resultType="MaterialVo">
+		SELECT * FROM tbl_material
+		WHERE MATERIAL_NO = #{material_no}
+	</select>
+	
+
+ 	<!-- __________준비물로 목록조회 ___________-->
+ 	
+ 	<!-- 페이징을위한 개수구하기 -->
+ 	<select id="getCountHMList" parameterType="MaterialSearch" resultType="int">
+ 		SELECT count(*) 
+		FROM tbl_hobby_material HM
+		JOIN tbl_hobby H ON H.hobby_no = HM.hobby_no 
+		JOIN tbl_memberdetail W ON H.user_id = W.user_id
+		JOIN tbl_material M ON M.material_no = HM.material_no
+		<include refid="search"></include>
+ 	</select>
+ 	
+ 	<!-- 조회 -->
+	<select id="selectHMList" parameterType="MaterialSearch" resultType="HobbyVo">
+		SELECT * 
+		FROM (SELECT ROWNUM rnum, A.*
+				 FROM (SELECT  H.*, M.*, W.user_nick, W.user_img
+				 		<if test = "user_id != null">
+				 		, HL.hobby_no like_hobby, BM.hobby_no bm_hobby
+				 		</if>
+						FROM tbl_hobby_material HM
+						JOIN tbl_hobby H ON H.hobby_no = HM.hobby_no 
+						JOIN tbl_memberdetail W ON H.user_id = W.user_id
+						JOIN tbl_material M ON M.material_no = HM.material_no
+						<if test = "user_id != null">
+							LEFT OUTER JOIN tbl_hobby_like HL ON HL.user_id = #{user_id} AND H.hobby_no = HL.hobby_no
+							LEFT OUTER JOIN tbl_bookmark BM ON BM.user_id = #{user_id} AND H.hobby_no = BM.hobby_no
+				 		</if>
+				 		<include refid="search"></include> ) A )
+		WHERE rnum BETWEEN #{startRow} AND #{endRow} 
+	</select>
+	
+	<sql id="search">
+		<if test="time != 0 ">
+			JOIN tbl_time_cate T ON T.time_no = H.time_no
+		</if>
+		<if test="cost != 0">
+			JOIN tbl_cost_cate C ON C.cost_no = H.cost_no
+		</if>
+		<if test="level != 0">
+			JOIN tbl_level_cate L ON L.level_no = H.level_no
+		</if>
+			WHERE HM.material_no = #{m_no} AND H.is_del = 'N' 
+		<if test="time != 0 ">
+			AND H.time_no = #{time}
+		</if>
+		<if test="cost != 0">
+			AND  H.cost_no = #{cost}
+		</if>
+		<if test="level != 0">
+			AND H.level_no = #{level}
+		</if>
+ 		<if test="sort != null">
+ 			<choose> 
+				<when test="sort == 'like'">
+					ORDER BY H.like_cnt DESC, H.hobby_no DESC
+				</when>
+				<when test="sort == 'new'">
+					ORDER BY H.reg_date DESC
+				</when>
+				<when test="sort =='view'">
+					ORDER BY H.view_cnt DESC, H.hobby_no DESC
+				</when>
+				<when test="sort =='cmt'">
+					ORDER BY H.cmt_cnt DESC, H.hobby_no DESC
+				</when>
+			</choose>
+ 		</if>
+<!--  		<if test="sort == 'all'"> -->
+<!--  			ORDER BY H.hobby_no DESC -->
+<!--  		</if> -->
+	</sql>
+	
+	<!-- 자동완성용 준비물이름 리스트 -->
+	<select id="selectMaterialName" resultType="java.lang.String">
+		SELECT material_name FROM tbl_material
+	</select>
+ </mapper>
