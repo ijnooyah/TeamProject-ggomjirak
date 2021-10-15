@@ -16,6 +16,7 @@
 ![메인](https://user-images.githubusercontent.com/85017704/137364391-1abb06b3-dc49-428f-9fe8-86e129907ba4.gif)
 
 
+
 <br>
 
 ***
@@ -45,6 +46,9 @@
   - 전체 ERD ![133445512-f726486b-db6a-4b9a-b5b2-2d01909b6f51](https://user-images.githubusercontent.com/85017704/137365663-70888ad7-cdf5-481a-91d4-77e92e79ecd0.png)
   - 맡은 부분 ![그림1](https://user-images.githubusercontent.com/85017704/137365458-cc961863-7116-489a-8afe-8835d84e0c6a.png)
 
+* 기능 구현 영상 <br>
+[![유튜브](http://img.youtube.com/vi/ACG5QPcK8a4/0.jpg)](https://youtu.be/ACG5QPcK8a4) 
+
 <br><br>
 
 # 🛠특별한 기능
@@ -61,7 +65,7 @@
 </details>
 
 <details>
-  <summary><b>준비물</b></summary>
+  <summary><b>링크</b></summary>
    <div markdown="1">
 	   
 - 준비물을 카테고리화 한다.
@@ -72,11 +76,26 @@
 </details>
 
 <details>
-  <summary><b>페이징</b></summary>
+  <summary><b>준비물로 목록 조회</b></summary>
    <div markdown="1">
 	   
 - 준비물을 카테고리화 한다.
 - 준비물을 사용한 게시글을 조회할 수 있다.
+
+	   
+   </div>
+</details>
+
+
+<details>
+  <summary><b>슬라이드 기능</b></summary>
+   <div markdown="1">
+	   
+- 만들기 순서를 슬라이드로 볼 수 있다.
+- 재생버튼을 누르면 슬라이드가 자동으로 넘어간다.
+- 배속기능을 사용하여 슬라이드 넘김속도를 조정할 수 있다.
+- 슬라이드의 기본 간격은 약 4초로 설정했다. <br><br> 
+
 
 	   
    </div>
