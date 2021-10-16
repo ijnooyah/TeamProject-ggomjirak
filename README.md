@@ -90,10 +90,12 @@
   <summary><b>준비물로 목록 조회</b></summary>
    <div markdown="1">
 	   
-- 준비물을 카테고리화 한다.
-- 준비물을 사용한 게시글을 조회할 수 있다.
+- 준비물로 글을 조회할 수 있다.
+- 준비물은 데이터화를 위해 글작성시 DB에 저장된다. (이미 저장된 준비물일 경우 저장되지 않음)
+- 조회된 글목록을 페이징, 정렬, 분류할 수 있다. <br><br>
+	   ![준비물목록조회](https://user-images.githubusercontent.com/85017704/137577419-e372895e-ed2f-42ae-b4e6-fef04d5884ca.gif) <br><br><br><br>  
 
-	   
+
    </div>
 </details>
 
