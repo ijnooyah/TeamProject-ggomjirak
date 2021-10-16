@@ -23,20 +23,9 @@
 
 <br>
 
-<details open="open">
-  <summary>목차</summary>
-  <ol>
-    <li>
-      <a href="#개요">개요</a>
-    </li>
-    <li><a href="#특별한-기능">특별한 기능</a></li>
-  </ol>
-</details>
-
 
 # 👩‍💻개요
 
-[![유튜브](http://img.youtube.com/vi/ACG5QPcK8a4/0.jpg)](https://youtu.be/ACG5QPcK8a4) 
 
 * 프로젝트 명 : ggomjirak
 
@@ -45,8 +34,14 @@
 * 맡은 역할 : 취미글 CRUD, 후기 목록 조회, 준비물로 취미글 조회, 사진 업로드 기능
 
 * DB 설계 <br>
-  - 전체 ERD ![133445512-f726486b-db6a-4b9a-b5b2-2d01909b6f51](https://user-images.githubusercontent.com/85017704/137365663-70888ad7-cdf5-481a-91d4-77e92e79ecd0.png)
-  - 맡은 부분 ![그림1](https://user-images.githubusercontent.com/85017704/137365458-cc961863-7116-489a-8afe-8835d84e0c6a.png)
+
+전체 ERD             |  맡은 부분
+:-------------------------:|:-------------------------:
+<img width="50%" src="https://user-images.githubusercontent.com/85017704/137365663-70888ad7-cdf5-481a-91d4-77e92e79ecd0.png"/>  |  ![그림1](https://user-images.githubusercontent.com/85017704/137365458-cc961863-7116-489a-8afe-8835d84e0c6a.png)
+
+
+* 실행 영상 <br><br>
+[![유튜브](http://img.youtube.com/vi/ACG5QPcK8a4/0.jpg)](https://youtu.be/ACG5QPcK8a4) 
 
 
 <br><br>
@@ -114,3 +109,6 @@
 	   
    </div>
 </details>
+
+
+<br><br><br><br><br><br><br>
