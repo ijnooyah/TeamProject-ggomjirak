@@ -43,6 +43,8 @@
 * 실행 영상 <br><br>
 [![유튜브](http://img.youtube.com/vi/ACG5QPcK8a4/0.jpg)](https://youtu.be/ACG5QPcK8a4) 
 
+* 팀 깃허브 주소 <br> https://github.com/dogprint/ggomjirak
+
 
 <br><br>
 
